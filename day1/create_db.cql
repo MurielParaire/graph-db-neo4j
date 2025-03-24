@@ -1,0 +1,2 @@
+CREATE (n2:Cat {name: "Lucky", age: 11, since: 2015})<-[:HAS {since: 2015}]-(n0:Person {name: "Muriel", age: 23})-[:HAS {since: 2017}]->(:Cat {name: "Mona", age: 8})-[:FAMILY {relation: "sisters"}]->(n2),
+(:University {name: "Polytech Montpellier", city: "Montpellier"})<-[:STUDIES]-(n0)-[:PLAYS]->(:Game {name: "Genshin Impact"})
