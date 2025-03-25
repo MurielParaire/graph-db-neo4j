@@ -3,8 +3,7 @@ from neo4j import GraphDatabase
 from dotenv import load_dotenv
 
 load_dotenv()
-# URI examples: "neo4j://localhost", "neo4j+s://xxx.databases.neo4j.io"
-URI = "neo4j+s://81260a3b.databases.neo4j.io"
+URI = os.getenv("AURA_URI")
 USERNAME = os.getenv("AURA_USERNAME")
 PASSWORD = os.getenv("AURA_PASSWORD")
 AUTH = (USERNAME, PASSWORD)
