@@ -1,4 +1,7 @@
 aura/.env
-day2/spark/target
-day2/spark/.*
-day2/spark/project
+spark/target
+spark/.*
+spark/project
+.metals
+.scala-build
+.vscode
