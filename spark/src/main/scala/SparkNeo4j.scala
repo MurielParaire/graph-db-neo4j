@@ -1,6 +1,8 @@
+import org.apache.spark.sql.SparkSession
+
 object SparkNeo4j {
   def main(args: Array[String]): Unit = {
-    val url = "<url>"
+    val url = "bolt://localhost:7687" // for local desktop
     val password = "<password>"
     val username = "<username>"
     val dbname = "neo4j"
@@ -14,11 +16,7 @@ object SparkNeo4j {
       .master("local[*]")
       .getOrCreate()    
 
-    val readQuery =
-      """
-      MATCH (n)
-      RETURN COUNT(n)
-      """
+    val readQuery = "MATCH (n) RETURN COUNT(n)"
 
     val df = spark.read
       .format("org.neo4j.spark.DataSource")
