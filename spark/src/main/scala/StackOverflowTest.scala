@@ -5,7 +5,7 @@ import org.apache.spark.sql.functions.col
 import org.apache.spark.sql.types.{IntegerType, StringType, StructType}
 
 object StackOverflowTest {
-    def notmain(args: Array[String]): Unit = { //change fn to main to execute
+    def main(args: Array[String]): Unit = {
 
         val programStartTime = System.nanoTime()
 

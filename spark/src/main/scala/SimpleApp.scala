@@ -2,7 +2,7 @@
 import org.apache.spark.sql.SparkSession
 
 object SimpleApp {
-  def notmain(args: Array[String]): Unit = { //change fn to main to execute
+  def main(args: Array[String]): Unit = {
     val logFile = "./README.md" // Should be some file on your system
     val spark = SparkSession.builder.appName("Simple Application").master("local[*]").getOrCreate()
     val logData = spark.read.textFile(logFile).cache()

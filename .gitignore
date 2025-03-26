@@ -5,3 +5,4 @@ spark/project
 .metals
 .scala-build
 .vscode
+target
