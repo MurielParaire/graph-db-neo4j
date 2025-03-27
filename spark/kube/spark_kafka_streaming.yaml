@@ -1,15 +1,15 @@
 apiVersion: sparkoperator.k8s.io/v1beta2
 kind: SparkApplication
 metadata:
-  name: spark-minio-streaming-app
+  name: spark-kafka-streaming-app
   namespace: default
 spec:
   type: Scala
   mode: cluster
-  image: spark:v1.0
+  image: spark:v2.0
   imagePullPolicy: IfNotPresent
-  mainClass: fr.umontpellier.polytech.SparkMinIOStreaming
-  mainApplicationFile: s3a://test/SparkMinIOStreaming.jar
+  mainClass: fr.umontpellier.polytech.SparkKafkaStreaming
+  mainApplicationFile: s3a://test/SparkKafkaStreaming.jar
   arguments:
   - "5000"
   sparkVersion: 3.5.3

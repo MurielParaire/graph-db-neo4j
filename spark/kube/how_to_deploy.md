@@ -54,7 +54,7 @@ k3d image import spark:v1.0 -c nosql
 kubectl apply -f day2/spark/kube/usertest.yaml
 ```
 
-# deploy MiNIO Streaming
+## deploy MiNIO Streaming
 
 => you will need the docker image created before
 => as well as a Kubernetes with MinIO and Spark-operator
@@ -65,3 +65,25 @@ kubectl apply -f day2/spark/kube/spark_minio_streaming.yaml
 ```
 
 => replace the access and secret key in [spark_minio_streaming.yaml](./spark_minio_streaming.yaml)
+
+
+## Deploy Kafka
+
+We will be using the [strimzi kafka operator](https://artifacthub.io/packages/helm/strimzi/strimzi-kafka-operator).
+
+```
+helm repo add strimzi https://strimzi.io/charts
+helm repo update
+helm install my-strimzi-kafka-operator strimzi/strimzi-kafka-operator --version 0.45.0
+```
+
+download and apply [kafka-persistent-single.yaml](https://github.com/strimzi/strimzi-kafka-operator/blob/main/examples/kafka/kafka-persistent-single.yaml)
+```
+kubectl apply -f kafka-persistent-single.yaml
+```
+
+**Configure kafka**
+create a kafka topic:
+```
+kubectl --namespace default exec -it my-cluster-kafka-0 -c kafka -- bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic  cats
+```
