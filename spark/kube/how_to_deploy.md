@@ -47,7 +47,21 @@ docker build -t spark:v1.0 . -f Dockerfile.yaml  --no-cache
 k3d image import spark:v1.0 -c nosql
 ```
 
+=> replace the access and secret key in [usertest.yaml](./usertest.yaml)
+
 => deploy the application with 
 ```
 kubectl apply -f day2/spark/kube/usertest.yaml
 ```
+
+# deploy MiNIO Streaming
+
+=> you will need the docker image created before
+=> as well as a Kubernetes with MinIO and Spark-operator
+
+=> deploy the application with 
+```
+kubectl apply -f day2/spark/kube/spark_minio_streaming.yaml
+```
+
+=> replace the access and secret key in [spark_minio_streaming.yaml](./spark_minio_streaming.yaml)
