@@ -87,3 +87,9 @@ create a kafka topic:
 ```
 kubectl --namespace default exec -it my-cluster-kafka-0 -c kafka -- bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic  cats
 ```
+
+In this case, I called the topic cats so it will listen on it. To create new messages, you can use:
+```
+kubectl --namespace default exec -it my-cluster-kafka-0 -c kafka -- bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic  cats
+```
+and write any message in the new command line.
