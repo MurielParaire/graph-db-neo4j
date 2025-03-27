@@ -18,15 +18,20 @@ object SparkMinIOStreaming {
         .option("startingPosition","earliest")
         .option("host", "localhost")
         .option("port", "9000")
-        .text("s3a://streaming/")
+        .text("s3a://streaming/input/")
 
     val words = lines.as[String].flatMap(_.split(" "))
-
-
+    
     val query = words.writeStream
         .outputMode("append")
-        .format("console")    // Peut être "parquet", "json", etc.
+        .format("console") 
         .start()
+
+    val s3Output = lines.writeStream
+      .format("text")
+      .outputMode("append")
+      .option("checkpointLocation", "s3a://streaming/checkpoints/")
+      .start("s3a://streaming/output/")
     
     query.awaitTermination()
 

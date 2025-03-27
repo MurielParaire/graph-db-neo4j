@@ -31,6 +31,12 @@ object SparkKafkaStreaming {
         .format("console")    // Peut être "parquet", "json", etc
         .option("truncate", false)
         .start()
+
+    val s3Output = words.writeStream
+      .format("text")
+      .outputMode("append")
+      .option("checkpointLocation", "s3a://streaming/checkpoints/")
+      .start("s3a://streaming/output/")
     
     query.awaitTermination()
   }
